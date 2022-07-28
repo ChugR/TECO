@@ -1,0 +1,130 @@
+! DATE.TEC 7-Feb-83                              !
+!                                                !
+! Chug @ Real Time Engineering, Inc.             !
+!                                                !
+! What it does:                                  !
+!  This macro reminds(forces) you to enter a date!
+!  on an RT-11 system and makes it easy for you  !
+!  to do so.                                     !
+!                                                !
+!  DATE.TEC remembers a date for you             !
+!  in a one block file named SY:DATE.FIL         !
+!  The date is this file  is text in standard    !
+!  RT-11 format: 17-FEB-83, for instance.        !
+!                                                !
+!                                                !
+! How it's used:                                 !
+!  Have a VT-52 console, RT-11 V3, TECO V28      !
+!  Have DATE.TEC on device SY:                   !
+!  The last few lines of STARTx.COM are:         !
+!    SET TT NOCRLF                               !
+!    SET TT SCOPE                                !
+!    EDIT/EXEC/TECO SY:DATE                      !
+!                                                !
+!  The user is prompted to enter/edit a date just!
+!  like he would enter/edit the file name to the !
+!  VEG.TEC macro. The following keys are used:   !
+!                                                !
+!    A-Z    entered as typed                     !
+!    0-9    entered as typed                     !
+!     -     hyphen, entered as typed             !
+!    DEL    deletes last character               !
+!    CTRL-U deletes entire line                  !
+!     +     increments date by one day           !
+!                                                !
+!  The first user in the morning has to hit the  !
+!  "+" key enough times to get the correct date  !
+!  and then type RETURN. For the rest of the     !
+!  day subsequent users are prompted with the    !
+!  correct date and simply type RETURN.          !
+!                                                !
+!  If you really don't want a date then          !
+!  delete the date and type RETURN.              !
+!                                                !
+! Why it's used:                                 !
+!  We have a couple of RT-11 systems that are    !
+!  turned on and off a lot and remembering to    !
+!  enter the date caused us a certain amount of  !
+!  trouble in controlling program revisions.     !
+!  Originally, the STARTx.COM file typed a       !
+!  'Remember to enter the date, stupid' message  !
+!  but we still had files with no date on them.  !
+!  Finally, I whipped up this macro, imposed     !
+!  it on all our system disks, and now we always !
+!  have a system date.                           !
+!                                                !
+! Problems you might encounter:                  !
+!  You will need to have a version of TECO       !
+!  that supports the ^W command. Then decide     !
+!  for yourself to use <^><W> or <CTRL-W>        !
+!  by trial and error.                           !
+!                                                !
+!  Put this last in the STARTx.COM file. The     !
+!  EG exit from TECO causes funny things to      !
+!  happen to the rest of your command file.      !
+!                                                !
+!  All the dollar signs '$' in this listing are  !
+!  really ESCapes. <^L> is a form feed.          !
+!                                                !
+!  If your date is not in the standard format    !
+!  when you type "+" or RETURN                   !
+!  then this macro will quickly lose its mind.   !
+!  Use the standard format.                      !
+!                                                !
+HKYHXXMX$
+<^L>
+HK :EBSY:DATE.FIL[1]$ U0 Q0"E EWSY:DATE.FIL[1]$' Q0"N Y' 0J
+@I/
+
+
+
+
+
+
+
+
+
+               Today's date:/ .U1 0U2 ZJ
+512#2#ETET < -1^W ET#8ET$ ^TU0
+Q0-13 "E^T$ 0,Q1K 0;'
+1U2
+<
+Q0-127"E .-Q1"G-D''
+Q0-21 "E Q1,ZK'
+Q0"R Q0@I//'
+Q0-^^-"E Q0@I//'
+Q0-^^+"E Q1J \U0 Q1,.K .U3 C 1%0
+!                                                !
+! Check for month rollover                       !
+!                                                !
+  Q0-32"E 1,1:@FS/JAN/FEB/"S3R1U0''
+  Q0-29"E 1,1:@FS/FEB/MAR/"S
+!                                                !
+! Throw in leap years, just to be a nice guy     !
+!                                                !
+    .U0 C \U5 Q5/4*4U6 Q0J Q5-Q6"E -3D@I/FEB/ 29U0 3R @O/AA/'
+                            3R1U0 !AA!''
+  Q0-30"E 1,1:@FS/FEB/MAR/"S3R1U0''
+  Q0-33"E 1,1:@FS/MAR/APR/"S3R1U0''
+  Q0-31"E 1,1:@FS/APR/MAY/"S3R1U0''
+  Q0-32"E 1,1:@FS/MAY/JUN/"S3R1U0''
+  Q0-31"E 1,1:@FS/JUN/JUL/"S3R1U0''
+  Q0-32"E 1,1:@FS/JUL/AUG/"S3R1U0''
+  Q0-32"E 1,1:@FS/AUG/SEP/"S3R1U0''
+  Q0-31"E 1,1:@FS/SEP/OCT/"S3R1U0''
+  Q0-32"E 1,1:@FS/OCT/NOV/"S3R1U0''
+  Q0-31"E 1,1:@FS/NOV/DEC/"S3R1U0''
+  Q0-32"E 1,1:@FS/DEC/JAN/"S
+!                                                !
+! Do year rollover, too                          !
+!                                                !
+    C .U5 \U6 Q5,.K Q6+1\ Q5J R
+	                        3R1U0''
+  R Q0\
+ ZJ$'
+0;
+>>
+! close the file, put together the date command  !
+! and exit                                       !
+Q2"E EK$' Q2"N 0,ZPEF' J@I/EGDATE /  ZJ@I/
+$$/ HXZ HK MZ$$
