@@ -121,6 +121,11 @@ I got to fix a few comments to correct some half-truths along the way.
 
 Hah!
 
+### Prior art
+
+This macro mentions VEG.TEC, a publicly available macro for editing in
+full screen mode. Good luck finding out anything about it.
+
 ## License
 
 This code is released under Apache License Version 2.0. Please see
