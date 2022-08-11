@@ -13,7 +13,7 @@ keywords. Here's some example TECO code for you to judge for
 yourself.
 
 The code manages a calendar date and provides a simple mechanism
-to let the user change and save the date while registering it with the
+to let a user change and save the date while registering it with the
 OS, usually at boot time.
 
 ## Introduction
@@ -32,7 +32,7 @@ Code management back then was pretty
 lame and we needed all the help we could get. I have vivid memories of
 having three floppy disks with identically named files none of which
 had a date.
-Which file was edited today to fix the problem of the moment?
+Which file was edited today???
 
 We tried printing reminders like
 **Hey, stupid, remember to enter a system date!** at then end of
@@ -93,8 +93,9 @@ Regardless, this macro running on a hard-copy console leads to some
 hilarious results with CTRL-W redrawing the screen on paper over and over
 again.
 
-### Debugging a TECO macro is a challenge
+### Debugging
 
+* Debugging a TECO macro is a challenge.
 * You can not put a breakpoint in the code stream and examine variables.
 * Console printout is overwritten by CTRL-W screen refreshes.
 * Simple rookie mistakes usually cause disasters.
