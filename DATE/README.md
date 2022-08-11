@@ -126,6 +126,12 @@ Hah!
 This macro mentions VEG.TEC, a publicly available macro for editing in
 full screen mode. Good luck finding out anything about it.
 
+### Console I/O
+
+Here is a stone age editor intercepting console characters as they
+are typed and then acting on them. Can this even be done nowadays
+in VS Code, Atom, Notepad++, or any other editor?
+
 ## License
 
 This code is released under Apache License Version 2.0. Please see
