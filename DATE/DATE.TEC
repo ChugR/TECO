@@ -9,7 +9,7 @@
 !                                                !
 !  DATE.TEC remembers a date for you             !
 !  in a one block file named SY:DATE.FIL         !
-!  The date is this file  is text in standard    !
+!  The date in this file is text in standard     !
 !  RT-11 format: 17-FEB-83, for instance.        !
 !                                                !
 !                                                !
